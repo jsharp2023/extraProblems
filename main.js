@@ -32,25 +32,17 @@ function exclaim(str) {
 }
 
 function countWords(str) {
-  let count = 0
-  for(let i = 0; i < str.length; i++){
-    if(str[i] === true){
-      count++
-    }
-  }
-  return count
+  return str.split(' ')
 }
 
 function containsDigit(str) {
-      if(str = ['a-z']){
+     const validation = '0123456789'
+     for(let char of str){
+      if(validation.includes(char)){
         return true
-        if(str = ['0-9']){
-          return true
-        }
       }
-        
-      
-    
+     }
+     return false
   }
 
 
@@ -58,47 +50,69 @@ function containsDigit(str) {
 
 
 function containsLowerCase(str) {
-  return /[a-z]/.test(str)
+  return str.toLowerCase() !== str
 }
 
 function containsUpperCase(str) {
-  return /[A-Z]/.test(str)
+  return str.toUpperCase() !== str  
 }
 
 function containsNonAlphanumeric(str) {
-  return /[^a-zA-Z0-9]/.test(str);
+  const validator = 'abcdefghijklmnopqrstuvwxyz1234567890 '
+  for(let char of str){
+    if(validator.includes(char.toLowerCase())){
+  continue
+    }else{
+      return true
+    }
+  }
+  return false
 }
 
 function containsSpace(str) {
-  return str.includes(' ')
+ return str.includes(' ')
 }
 
 function digits(num) {
-  return Array.from(String(num), Number)
+let arr= num.toString()
+const result = []
+for(let char of arr){
+  if(!('. -'.includes(char))){
+    result.push(parseInt(char))
+  }
+}
+return result
 }
 
 function truncate(title) {
-  return title.length > 15 ? title.slice(0, 8) + '...' : title;
-}
-
-function isValidPassword(password) {
-  if(password.length >= 8 ){
-    if(password !== password.toUpperCase()&& password !== password.toLowerCase())
-    return true
+  if(str.length >= 15){
+  return str.slice(0, 8) + '...' 
   }else{
-    return false
+    return str
   }
   
 }
 
-function onlyPunchy(titles ) {
-    if(titles.lenght <= 15){
-      if(!titles.endsWith('!')){
-        titles =+'!'
-      }else{
-        titles = titles.replace(/!=/g, '!')
-      }
+function isValidPassword(str) {
+  
+    return containsDigit(str)&&
+    containsLowerCase(str)&&
+    containsUpperCase(str)&&
+    containsNonAlphanumeric(str)&&
+    !containsSpace(str)
+  }
+  
+
+
+function onlyPunchy(arr ) {
+  resultArr = []
+  for(let movie of arr){
+    let newStr = exclaim(movie)
+    if(!isLong(newStr)){
+      resultArr.push(newStr)
     }
+  }
+return resultArr
   }
 
 
